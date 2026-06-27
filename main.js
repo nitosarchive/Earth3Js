@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import BlendMode from 'three/src/renderers/common/BlendMode.js';
+import { OrbitControls } from './three/addons/controls/OrbitControls.js';
+import BlendMode from './three/src/renderers/common/BlendMode.js';
 
 
 const w = window.innerWidth;
@@ -26,12 +26,12 @@ const geo = new THREE.IcosahedronGeometry(1, 12)
 //Earth
 const earthObj= new THREE.Object3D();
 const earthGroup = new THREE.Group();
-const earthMap = loader.load("imgs/world.topo.bathy.200408.3x5400x2700.jpg");
+const earthMap = loader.load("./imgs/world.topo.bathy.200408.3x5400x2700.jpg");
 const material = new THREE.MeshStandardMaterial({map: earthMap});
 const earth = new THREE.Mesh(geo, material);
 earthGroup.rotation.z = -23.4 * Math.PI / 100;
 const earthNight = new THREE.MeshBasicMaterial(
-  {map: loader.load("imgs/2k_earth_nightmap.jpg"),
+  {map: loader.load("./imgs/2k_earth_nightmap.jpg"),
     blending: THREE.AdditiveBlending
   }
 );
@@ -42,7 +42,7 @@ earthObj.add(earthGroup)
 earthObj.position.x = -47
 
 const cloudMat = new THREE.MeshStandardMaterial({
-  map: loader.load("imgs/8k_earth_clouds.jpg"),
+  map: loader.load("./imgs/8k_earth_clouds.jpg"),
   blending: THREE.AdditiveBlending
 });
 
@@ -51,7 +51,7 @@ earthGroup.add(cloudMesh);(0xffffff);
 
 //Moon
 const moonObj = new THREE.Object3D();
-const moonMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/8k_moon.jpg")});
+const moonMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_moon.jpg")});
 const moon = new THREE.Mesh(geo, moonMat);
 moon.scale.setScalar(0.4)
 moon.position.x = 4;
@@ -87,7 +87,7 @@ earthObj.add(moonObj);
 }
 
 //Sun
-const sunMat = new THREE.MeshBasicMaterial({map: loader.load("imgs/8k_sun.jpg")})
+const sunMat = new THREE.MeshBasicMaterial({map: loader.load("./imgs/8k_sun.jpg")})
 const sun = new THREE.Mesh(geo, sunMat);
 sun.scale.setScalar(5);
 
@@ -95,7 +95,7 @@ sun.scale.setScalar(5);
 
 //Mercury
 const mercObj = new THREE.Object3D();
-const mercMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/8k_mercury.jpg")});
+const mercMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_mercury.jpg")});
 const merc = new THREE.Mesh(geo, mercMat);
 merc.scale.setScalar(0.5);
 mercObj.add(merc);
@@ -105,9 +105,9 @@ merc.position.x = -17;
 //Venus
 const venObj = new THREE.Object3D();
 const venGroup = new THREE.Group();
-const venMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/8k_venus_surface.jpg")});
+const venMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_venus_surface.jpg")});
 const venus = new THREE.Mesh(geo, venMat);
-const venAtmosMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/4k_venus_atmosphere.jpg"), blending: THREE.AdditiveBlending});
+const venAtmosMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/4k_venus_atmosphere.jpg"), blending: THREE.AdditiveBlending});
 const venAtmos = new THREE.Mesh(geo, venAtmosMat);
 venGroup.add(venus);
 venGroup.add(venAtmos);
@@ -120,7 +120,7 @@ venGroup.position.x = -27;
 
 //Mars
 const marsObj = new THREE.Object3D();
-const marsMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/8k_mars.jpg")});
+const marsMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_mars.jpg")});
 const mars = new THREE.Mesh(geo, marsMat);
 mars.scale.setScalar(0.7);
 marsObj.add(mars)
@@ -138,7 +138,7 @@ for (let i = 0; i < pos.count; i++){
 
 
 const ringMat = new THREE.MeshBasicMaterial({
-  map: loader.load("imgs/backscattered.png"),
+  map: loader.load("./imgs/backscattered.png"),
   side: THREE.DoubleSide,
   color: 0xffffff
 });
@@ -148,7 +148,7 @@ rings.rotation.x = 80;
 
 // Saturn
 
-const satMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/8k_saturn.jpg")});
+const satMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_saturn.jpg")});
 const sat = new THREE.Mesh(geo, satMat);
 sat.scale.setScalar(3)
 const satGroup = new THREE.Group();
@@ -159,7 +159,7 @@ satObj.add(satGroup);
 
 //Juipiter
 
-const juipMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/8k_jupiter.jpg")})
+const juipMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_jupiter.jpg")})
 const juip = new THREE.Mesh(geo, juipMat);
 juip.scale.setScalar(3.5)
 const juipGroup = new THREE.Group();
@@ -169,7 +169,7 @@ const juipObj = new THREE.Object3D();
 juipObj.add(juipGroup);
 
 //Uranus
-const anusMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/2k_uranus.jpg")})
+const anusMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/2k_uranus.jpg")})
 const anus = new THREE.Mesh(geo, anusMat);
 anus.scale.setScalar(2.5)
 const anusGroup = new THREE.Group();
@@ -180,7 +180,7 @@ anusObj.add(anusGroup);
 
 //Neptune
 
-const nepMat = new THREE.MeshStandardMaterial({map: loader.load("imgs/2k_neptune.jpg")})
+const nepMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/2k_neptune.jpg")})
 const nep = new THREE.Mesh(geo, nepMat);
 nep.scale.setScalar(2.35)
 const nepGroup = new THREE.Group();
@@ -192,7 +192,7 @@ nepObj.add(nepGroup);
 //Scene
 scene.add(sun);
 scene.add(marsObj, venObj, earthObj, mercObj, satObj, juipObj, anusObj, nepObj);
-scene.background = loader.load("imgs/stars.jpg");
+scene.background = loader.load("./imgs/stars.jpg");
 renderer.render(scene, camera);
 render()
 
