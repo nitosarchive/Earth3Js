@@ -1,6 +1,6 @@
-import * as THREE from './node_modules/three';
-import { OrbitControls } from './three/addons/controls/OrbitControls.js';
-import BlendMode from './three/src/renderers/common/BlendMode.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import BlendMode from 'three/src/renderers/common/BlendMode.js';
 
 
 const w = window.innerWidth;
@@ -29,7 +29,7 @@ const earthGroup = new THREE.Group();
 const earthMap = loader.load("./imgs/world.topo.bathy.200408.3x5400x2700.jpg");
 const material = new THREE.MeshStandardMaterial({map: earthMap});
 const earth = new THREE.Mesh(geo, material);
-earthGroup.rotation.z = -23.4 * Math.PI / 100;
+earth.rotation.z = -23.4 * Math.PI / 100;
 const earthNight = new THREE.MeshBasicMaterial(
   {map: loader.load("./imgs/2k_earth_nightmap.jpg"),
     blending: THREE.AdditiveBlending
@@ -38,8 +38,9 @@ const earthNight = new THREE.MeshBasicMaterial(
 const lightMesh = new THREE.Mesh(geo, earthNight)
 earthGroup.add(earth);
 earthGroup.add(lightMesh);
-earthObj.add(earthGroup)
-earthObj.position.x = -47
+earthObj.add(earthGroup);
+lightMesh.rotation.z = -23.4 * Math.PI / 100;
+earthGroup.position.x = -47
 
 const cloudMat = new THREE.MeshStandardMaterial({
   map: loader.load("./imgs/8k_earth_clouds.jpg"),
@@ -48,15 +49,16 @@ const cloudMat = new THREE.MeshStandardMaterial({
 
 const cloudMesh = new THREE.Mesh(geo, cloudMat);
 earthGroup.add(cloudMesh);(0xffffff);
+cloudMesh.rotation.z = -23.4 * Math.PI / 100;
 
 //Moon
 const moonObj = new THREE.Object3D();
 const moonMat = new THREE.MeshStandardMaterial({map: loader.load("./imgs/8k_moon.jpg")});
 const moon = new THREE.Mesh(geo, moonMat);
-moon.scale.setScalar(0.4)
-moon.position.x = 4;
+moon.scale.setScalar(0.4);
+moon.position.z = 3
 moonObj.add(moon);
-earthObj.add(moonObj);
+earth.add(moonObj);
 
 //Render Update
 
@@ -64,6 +66,7 @@ earthObj.add(moonObj);
   controls.update();
   earthGroup.rotateY(0.01);
   earthObj.rotateY(0.005);
+  moon.rotateY(0.01);
   sun.rotation.y += 0.01/ 24;
   mercObj.rotateY(0.03);
   merc.rotateY(0.07);
