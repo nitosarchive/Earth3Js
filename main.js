@@ -1,6 +1,6 @@
 import * as THREE from "./node_modules/three/build/three.module.js";
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import BlendMode from 'three/src/renderers/common/BlendMode.js';
+import { OrbitControls } from './node_modules/three/addons/controls/OrbitControls.js';
+import BlendMode from './node_modules/three/src/renderers/common/BlendMode.js';
 
 
 const w = window.innerWidth;
